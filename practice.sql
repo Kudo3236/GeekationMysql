@@ -191,11 +191,16 @@ SELECT '1981' AS "誕生年",COUNT(*) AS "人数"
 FROM celebrities
 WHERE birth LIKE '1981%';
 
-
-
-
-
-
-
 -- 問32
 -- 有名人の出身国の平均年齢を高い方から順に表示してください。ただし、FROM句はcountriesテーブルとしてください。
+SELECT countries_name,AVG(celebrities.age) AS average_age
+FROM countries
+JOIN celebrities
+ON celebrities.country_code = countries.code
+GROUP BY celebrities.country_code
+ORDER BY average_age DESC;
+
+
+
+
+
